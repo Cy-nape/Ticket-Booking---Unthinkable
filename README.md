@@ -5,7 +5,7 @@ A production-quality Ticket Booking API and Frontend built for movies and concer
 Unlike standard CRUD applications, this project tackles the hardest problems in live ticketing: double-bookings, race conditions, and real-time state synchronization across thousands of clients.
 
 ## 🌍 Live Demo
-**[Click Here to view the Live Deployed Application on Render](https://<YOUR-RENDER-FRONTEND-URL>.onrender.com)** *(Please replace this placeholder with your actual Render URL)*
+**[Click Here to view the Live Deployed Application on Render](https://ticket-booking-frontend-hitt.onrender.com/)**
 
 ---
 
