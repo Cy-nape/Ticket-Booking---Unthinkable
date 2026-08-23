@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fetchWithAuth, API_URL, WS_URL } from "../api";
 import { useAuth } from "../context/AuthContext";
@@ -31,7 +31,7 @@ export default function EventDetail() {
         setSeats(data);
         setLoading(false);
       })
-      .catch(err => {
+      .catch(() => {
         setError("Failed to fetch seats");
         setLoading(false);
       });

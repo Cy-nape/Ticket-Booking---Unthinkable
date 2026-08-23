@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { API_URL } from '../api';
 
-interface EventData {
-  id: str;
-  title: str;
-  description: str;
-  date_time: str;
+interface Event {
+  id: string;
+  title: string;
+  description: string;
+  date_time: string;
 }
 
 export default function EventList() {
-  const [events, setEvents] = useState<EventData[]>([]);
+  const [events, setEvents] = useState<Event[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/events')
+    fetch(`${API_URL}/events`)
       .then(res => res.json())
       .then(data => setEvents(data))
       .catch(err => console.error(err));

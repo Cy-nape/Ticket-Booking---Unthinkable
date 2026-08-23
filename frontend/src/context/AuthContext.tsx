@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { fetchWithAuth } from "../api";
+import { createContext, useContext, useState, useEffect } from 'react';
+import type { ReactNode } from 'react';
+
 
 interface User {
   id: string;

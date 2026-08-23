@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
 interface SeatStatus {
@@ -7,7 +7,7 @@ interface SeatStatus {
   col: number;
   category_name: string;
   status: 'AVAILABLE' | 'HELD' | 'BOOKED';
-  price: float;
+  price: number;
 }
 
 export default function SeatMap() {
