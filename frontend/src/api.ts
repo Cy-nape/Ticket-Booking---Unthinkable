@@ -22,7 +22,13 @@ export async function fetchWithAuth(endpoint: string, options: RequestInit = {})
     let errorMsg = "API Error";
     try {
       const errorData = await response.json();
-      errorMsg = errorData.detail || errorMsg;
+      if (typeof errorData.detail === "string") {
+        errorMsg = errorData.detail;
+      } else if (Array.isArray(errorData.detail)) {
+        errorMsg = errorData.detail[0]?.msg || "Validation Error";
+      } else if (errorData.detail) {
+        errorMsg = JSON.stringify(errorData.detail);
+      }
     } catch (e) {
       // Ignored
     }

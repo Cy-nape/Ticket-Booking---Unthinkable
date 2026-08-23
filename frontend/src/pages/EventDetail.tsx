@@ -111,6 +111,14 @@ export default function EventDetail() {
     }
   };
 
+  // Auto-dismiss errors after 4 seconds
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => setError(""), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
   if (loading) {
     return (
       <div className="flex-grow flex items-center justify-center">
@@ -132,12 +140,23 @@ export default function EventDetail() {
         <h1 className="text-3xl md:text-4xl font-extrabold text-white">Select Your Seat</h1>
       </div>
 
+      {/* Floating Error Toast */}
       {error && (
-        <div className="bg-red-500/10 border border-red-500/50 text-red-400 p-4 mb-8 text-sm rounded-xl font-medium flex items-center gap-3">
-          <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          {error}
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-[bounce_0.5s_ease-out]">
+          <div className="bg-slate-900/90 backdrop-blur-md border border-red-500/50 shadow-[0_10px_40px_rgba(239,68,68,0.2)] text-white px-6 py-4 rounded-2xl flex items-center gap-4 max-w-md w-max">
+            <div className="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center shrink-0 border border-red-500/30">
+              <svg className="w-5 h-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div>
+              <h4 className="font-bold text-red-400 text-sm mb-0.5">Action Failed</h4>
+              <p className="text-sm text-slate-300">{error}</p>
+            </div>
+            <button onClick={() => setError("")} className="ml-auto text-slate-500 hover:text-white transition-colors shrink-0">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+          </div>
         </div>
       )}
       
