@@ -2,11 +2,13 @@ databases:
   - name: ticket-booking-db
     databaseName: ticket_booking
     user: admin
+    plan: free
 
 services:
   - type: web
     name: ticket-booking-backend
     env: python
+    plan: free
     buildCommand: "cd backend && pip install -r requirements.txt && alembic upgrade head"
     startCommand: "cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
     envVars:
