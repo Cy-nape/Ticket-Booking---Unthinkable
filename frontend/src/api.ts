@@ -1,5 +1,5 @@
-export const API_URL = "http://localhost:8000";
-export const WS_URL = "ws://localhost:8000";
+export const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+export const WS_URL = API_URL.replace("http://", "ws://").replace("https://", "wss://");
 
 export async function fetchWithAuth(endpoint: string, options: RequestInit = {}) {
   const token = localStorage.getItem("token");

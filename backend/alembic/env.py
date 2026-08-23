@@ -26,7 +26,7 @@ from app.config import settings
 target_metadata = Base.metadata
 
 # Override the url in alembic.ini with the one from config
-config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
+config.set_main_option("sqlalchemy.url", settings.sync_database_url)
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
